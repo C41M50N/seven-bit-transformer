@@ -1,7 +1,7 @@
 
 #? CONFIG
 INPUT_BITS = 4
-OUTPUTS = [
+OUTPUTS = [ # 2^4 = 16 distinct outputs
 #    a b c d e f g
     (1,1,1,1,1,1,0), # 0
     (0,1,1,0,0,0,0), # 1
@@ -51,6 +51,9 @@ for i, output_col in enumerate(OUTPUT_COLS):
     if s.endswith(" OR )"):
         s = s.replace(" OR )", " )")
 
+    if s.endswith("not( )"):
+        s = s.replace("not( )", "not( '0' )")
+
     print(f"{s};")
 
 print("")
@@ -70,5 +73,8 @@ for i, output_col in enumerate(OUTPUT_COLS):
     
     if s.endswith(" AND )"):
         s = s.replace(" AND )", " )")
+
+    if s.endswith("not( )"):
+        s = s.replace("not( )", "not( '1' )")
 
     print(f"{s};")
